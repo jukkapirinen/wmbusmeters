@@ -30,6 +30,7 @@ namespace {
         di.addLinkMode(LinkMode::T1);
         di.addDetection(MANUFACTURER_BMT, 0x06, 0x13);
         di.addDetection(MANUFACTURER_BMT, 0x06, 0x17);
+        di.addDetection(MANUFACTURER_BMT, 0x07, 0x17);
         di.addDetection(MANUFACTURER_BMT, 0x07, 0x13);
         di.addDetection(MANUFACTURER_BMT, 0x07, 0x15);
         di.usesProcessContent();
@@ -96,7 +97,6 @@ namespace {
         addNumericField("December_total", Quantity::Volume,
                 DEFAULT_PRINT_PROPERTIES, "Total value at the end of December",
                 Unit::M3);
-
     }
 
     double fromMonthly(uchar first_byte, uchar second_byte, uchar third_byte) {
