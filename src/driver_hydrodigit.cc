@@ -97,6 +97,29 @@ namespace {
         addNumericField("December_total", Quantity::Volume,
                 DEFAULT_PRINT_PROPERTIES, "Total value at the end of December",
                 Unit::M3);
+        setMfctTPLStatusBits(
+                Translate::Lookup()
+                .add(Translate::Rule("TPL_STS", Translate::MapType::BitToString)
+                     .set(MaskBits(0xe0))
+                     .set(DefaultMessage("OK"))
+                     .add(Translate::Map(0x20 ,"OVERFLOW", TestBit::Set))
+                     .add(Translate::Map(0x40 ,"LEAK", TestBit::Set))
+                     .add(Translate::Map(0x80 ,"REVERSE_INSTALLATION", TestBit::Set))));
+                /*   These bit values can be get from standard bits
+                     0x00 = OK
+                     0x01 = APPLICATION_BUSY = "BUSY "
+                     0x02 = APPLICATION_ERROR = "ERROR "
+                     0x03 = WATER_LEAKAGE = "ALARM "
+                     0x04 = BATTERY_ISSUE = "POWER_LOW "
+                     0x08 = DONT_CARE = "PERMANENT_ERROR "
+                     0x10 = BURST = "TEMPORARY_ERROR "
+                */
+        addStringField(
+                "status",
+                "Meter status from tpl status field.",
+                DEFAULT_PRINT_PROPERTIES  |
+                PrintProperty::STATUS | PrintProperty::INCLUDE_TPL_STATUS);
+
     }
 
     double fromMonthly(uchar first_byte, uchar second_byte, uchar third_byte) {
