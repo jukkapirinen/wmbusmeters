@@ -850,12 +850,6 @@ test {
     fields   = 'HCA;68036198;ERROR_FLAGS_4000 HEATER_TEMPERATURE_OUT_OF_RANGE TAMPERING;0;18.66;1111-11-11 11:11.11'
 }
 test {
-    args     = 'hydro7 hydrodigit 03122061 NOKEY'
-    telegram = 4C44B4096120120317077AB90000000C1330000000046D132E3E360F8F000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-    json     = '{"_":"telegram","backflow_m3":0,"contents":"BACKFLOW BATTERY_VOLTAGE FRAUD_DATE LEAK_DATE","fraud_date":null,"fraud_type":"NO_TYPE_INFO","id":"03122061","leak_date":null,"media":"water","driver":"hydrodigit","meter_datetime":"2025-06-30 14:19","name":"hydro7","timestamp":"1111-11-11T11:11:11Z","total_m3":0.03,"voltage_v":3.7}'
-    fields   = 'hydro7;03122061;0.03;2025-06-30 14:19;1111-11-11 11:11.11'
-}
-test {
     args     = 'HydrodigitWaterrr hydrodigit 23746391 NOKEY'
     comment  = 'This one has a backflow and a leak date, but no monthly data.'
     telegram = 2144B4099163742315077A400000000C1399999999046D092A30340F050B01000000
@@ -877,16 +871,129 @@ test {
     fields   = 'Hydro3;87654321;43.964;2024-05-22 15:33;1111-11-11 11:11.11'
 }
 test {
-    args     = 'HydridigitWaterr hydrodigit 03245501 NOKEY'
-    telegram = 2444B4090155240317068C00487AC0000000_0C1335670000046D172EEA280F030000000000
-    json     = '{"_":"telegram","contents":"BATTERY_VOLTAGE FRAUD_DATE","fraud_date":null,"fraud_type":"NO_TYPE_INFO","id":"03245501","media":"warm water","driver":"hydrodigit","meter_datetime":"2023-08-10 14:23","name":"HydridigitWaterr","timestamp":"1111-11-11T11:11:11Z","total_m3":6.735,"voltage_v":3.7}'
-    fields   = 'HydridigitWaterr;03245501;6.735;2023-08-10 14:23;1111-11-11 11:11.11'
-}
-test {
     args     = 'HydrodigitWater hydrodigit 86868686 NOKEY'
     telegram = 4E44B4098686868613077AF0004005_2F2F0C1366380000046D27287E2A0F150E00000000C10000D10000E60000FD00000C01002F0100410100540100680100890000A00000B30000002F2F2F2F2F2F
     json     = '{"_":"telegram","April_total_m3":2.53,"August_total_m3":3.4,"December_total_m3":1.79,"February_total_m3":2.09,"January_total_m3":1.93,"July_total_m3":3.21,"June_total_m3":3.03,"March_total_m3":2.3,"May_total_m3":2.68,"November_total_m3":1.6,"October_total_m3":1.37,"September_total_m3":3.6,"backflow_m3":0,"contents":"BACKFLOW BATTERY_VOLTAGE MONTHLY_DATA","id":"86868686","media":"water","driver":"hydrodigit","meter_datetime":"2019-10-30 08:39","name":"HydrodigitWater","timestamp":"1111-11-11T11:11:11Z","total_m3":3.866,"voltage_v":3.7}'
     fields   = 'HydrodigitWater;86868686;3.866;2019-10-30 08:39;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code FB'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 5B44B4094100320317078C208B7AF00000200C1374124900046D1C3350390FFB6424020000260424270424E80300001509D00700001609640000C800002C0100900100F40100580200BC0200200300840300E803004C0400B0040028
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"BACKFLOW BATTERY_PERCENTAGE BURST_DATE LEAK_DATE MEMORY_DAY_1 MEMORY_DAY_2 MONTHLY_DATA","battery_pct":100,"backflow_m3":0.548,"leak_date":"2024-04-26","burst_date":"2024-04-27","memory_day_1_m3":1,"memory_day_1_day_counter":15,"memory_day_1_month_counter":9,"memory_day_2_m3":2,"memory_day_2_day_counter":16,"memory_day_2_month_counter":9,"January_total_m3":1,"February_total_m3":2,"March_total_m3":3,"April_total_m3":4,"May_total_m3":5,"June_total_m3":6,"July_total_m3":7,"August_total_m3":8,"September_total_m3":9,"October_total_m3":10,"November_total_m3":11,"December_total_m3":12,"history_day_counter":28,"timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Existing generation-17 sample'
+    args     = 'hydro7 hydrodigits1 03122061 NOKEY'
+    telegram = 4C44B4096120120317077AB90000000C1330000000046D132E3E360F8F000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    json     = '{"_":"telegram","id":"03122061","media":"water","driver":"hydrodigits1","meter_datetime":"2025-06-30 14:19","name":"hydro7","total_m3":0.03,"battery_pct":null,"backflow_m3":0,"contents":"BACKFLOW BATTERY_PERCENTAGE FRAUD_DATE LEAK_DATE MONTHLY_DATA","fraud_date":null,"leak_date":null,"fraud_type":"NO_TYPE_INFO","history_day_counter":0,"January_total_m3":0,"February_total_m3":0,"March_total_m3":0,"April_total_m3":0,"May_total_m3":0,"June_total_m3":0,"July_total_m3":0,"August_total_m3":0,"September_total_m3":0,"October_total_m3":0,"November_total_m3":0,"December_total_m3":0,"timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'hydro7;03122061;0.03;2025-06-30 14:19;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Existing generation-17 sample'
+    args     = 'HydridigitWaterr hydrodigits1 03245501 NOKEY'
+    telegram = 2444B4090155240317068C00487AC0000000_0C1335670000046D172EEA280F030000000000
+    json     = '{"_":"telegram","id":"03245501","media":"warm water","driver":"hydrodigits1","meter_datetime":"2023-08-10 14:23","name":"HydridigitWaterr","total_m3":6.735,"battery_pct":null,"backflow_m3":0,"contents":"BACKFLOW BATTERY_PERCENTAGE","timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'HydridigitWaterr;03245501;6.735;2023-08-10 14:23;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Generation 1E sample'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 2444B409410032031E078C208B7AF00000200C1374124900046D1C3350390F036424020000
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","battery_pct":100,"backflow_m3":0.548,"contents":"BACKFLOW BATTERY_PERCENTAGE","timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Generation 17 sample'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 2444B4094100320317078C20C97AA70000200C1382994800046D312E4E390F0300DE000000
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":489.982,"meter_datetime":"2026-09-14 14:49","battery_pct":null,"backflow_m3":0.222,"contents":"BACKFLOW BATTERY_PERCENTAGE","timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;489.982;2026-09-14 14:49;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code FF'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 5E44B4094100320317078C208B7AF00000200C1374124900046D1C3350390FFF6424020000252424260424270424E80300001509D00700001609640000C800002C0100900100F40100580200BC0200200300840300E803004C0400B0040028
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"BACKFLOW BATTERY_PERCENTAGE BURST_DATE FRAUD_DATE LEAK_DATE MEMORY_DAY_1 MEMORY_DAY_2 MONTHLY_DATA","battery_pct":100,"backflow_m3":0.548,"fraud_date":"2024-04-25","fraud_type":"OVERFLOW","leak_date":"2024-04-26","burst_date":"2024-04-27","memory_day_1_m3":1,"memory_day_1_day_counter":15,"memory_day_1_month_counter":9,"memory_day_2_m3":2,"memory_day_2_day_counter":16,"memory_day_2_month_counter":9,"January_total_m3":1,"February_total_m3":2,"March_total_m3":3,"April_total_m3":4,"May_total_m3":5,"June_total_m3":6,"July_total_m3":7,"August_total_m3":8,"September_total_m3":9,"October_total_m3":10,"November_total_m3":11,"December_total_m3":12,"history_day_counter":28,"timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code 8F'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 4F44B4094100320317078C208B7AF00000200C1374124900046D1C3350390F8F6424020000252424260424640000C800002C0100900100F40100580200BC0200200300840300E803004C0400B0040028
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"BACKFLOW BATTERY_PERCENTAGE FRAUD_DATE LEAK_DATE MONTHLY_DATA","battery_pct":100,"backflow_m3":0.548,"fraud_date":"2024-04-25","fraud_type":"OVERFLOW","leak_date":"2024-04-26","January_total_m3":1,"February_total_m3":2,"March_total_m3":3,"April_total_m3":4,"May_total_m3":5,"June_total_m3":6,"July_total_m3":7,"August_total_m3":8,"September_total_m3":9,"October_total_m3":10,"November_total_m3":11,"December_total_m3":12,"history_day_counter":28,"timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code 03'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 2444B4094100320317078C208B7AF00000200C1374124900046D1C3350390F036424020000
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"BACKFLOW BATTERY_PERCENTAGE","battery_pct":100,"backflow_m3":0.548,"timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code 80'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 4444B4094100320317078C208B7AF00000200C1374124900046D1C3350390F80640000C800002C0100900100F40100580200BC0200200300840300E803004C0400B0040028
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"MONTHLY_DATA","January_total_m3":1,"February_total_m3":2,"March_total_m3":3,"April_total_m3":4,"May_total_m3":5,"June_total_m3":6,"July_total_m3":7,"August_total_m3":8,"September_total_m3":9,"October_total_m3":10,"November_total_m3":11,"December_total_m3":12,"history_day_counter":28,"timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code 40'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 2544B4094100320317078C208B7AF00000200C1374124900046D1C3350390F40D00700001609
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"MEMORY_DAY_2","memory_day_2_m3":2,"memory_day_2_day_counter":16,"memory_day_2_month_counter":9,"timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code 20'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 2544B4094100320317078C208B7AF00000200C1374124900046D1C3350390F20E80300001509
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"MEMORY_DAY_1","memory_day_1_m3":1,"memory_day_1_day_counter":15,"memory_day_1_month_counter":9,"timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code 10'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 2244B4094100320317078C208B7AF00000200C1374124900046D1C3350390F10270424
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"BURST_DATE","burst_date":"2024-04-27","timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code 08'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 2244B4094100320317078C208B7AF00000200C1374124900046D1C3350390F08260424
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"LEAK_DATE","leak_date":"2024-04-26","timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code 04'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 2244B4094100320317078C208B7AF00000200C1374124900046D1C3350390F04252424
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"FRAUD_DATE","fraud_date":"2024-04-25","fraud_type":"OVERFLOW","timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code 02'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 2344B4094100320317078C208B7AF00000200C1374124900046D1C3350390F0224020000
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"BACKFLOW","backflow_m3":0.548,"timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code 01'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 2044B4094100320317078C208B7AF00000200C1374124900046D1C3350390F0164
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"BATTERY_PERCENTAGE","battery_pct":100,"timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
+}
+test {
+    comment  = 'Synthetic MS code 00'
+    args     = 'Documented hydrodigits1 03320041 NOKEY'
+    telegram = 1F44B4094100320317078C208B7AF00000200C1374124900046D1C3350390F00
+    json     = '{"_":"telegram","media":"water","driver":"hydrodigits1","name":"Documented","id":"03320041","total_m3":491.274,"meter_datetime":"2026-09-16 19:28","contents":"NONE","timestamp":"1111-11-11T11:11:11Z"}'
+    fields   = 'Documented;03320041;491.274;2026-09-16 19:28;1111-11-11 11:11.11'
 }
 test {
     args     = 'HydrusFoo hydrus 64641820 NOKEY'
