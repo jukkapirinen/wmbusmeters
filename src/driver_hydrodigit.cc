@@ -32,6 +32,7 @@ namespace {
         di.addDetection(MANUFACTURER_BMT, 0x06, 0x17);
         di.addDetection(MANUFACTURER_BMT, 0x07, 0x17);
         di.addDetection(MANUFACTURER_BMT, 0x07, 0x13);
+        di.addDetection(MANUFACTURER_BMT, 0x07, 0x1e);
         di.addDetection(MANUFACTURER_BMT, 0x07, 0x15);
         di.usesProcessContent();
         di.setConstructor([](MeterInfo &mi, DriverInfo &di) {
